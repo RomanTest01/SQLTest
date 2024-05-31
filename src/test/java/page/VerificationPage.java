@@ -1,9 +1,10 @@
 package page;
 
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Condition.exactText;
+
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -16,8 +17,9 @@ public class VerificationPage {
         codeField.shouldBe(visible);
     }
 
-    public void verifyErrorNotification(String expectedText) {
-        errorNotification.shouldHave(exactText(expectedText)).shouldBe(visible);
+    public void verifyErrorNotification() {
+        errorNotification.shouldBe(visible);
+        errorNotification.shouldHave(Condition.text("Ошибка! " + "Неверно указан код! Попробуйте ещё раз."));
     }
 
     public DashboardPage validVerify(String verificationCode) {
